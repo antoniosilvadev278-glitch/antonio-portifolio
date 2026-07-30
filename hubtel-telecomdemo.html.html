@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hubtel Telecom | Sempre à Frente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080B12;
+    --bg-alt:#0E131D;
+    --surface:#121A26;
+    --surface-2:#182233;
+    --line:#22304533;
+    --line-strong:#2A3A52;
+    --orange:#FF7A32;
+    --orange-soft:#FFB185;
+    --cyan:#00E0D6;
+    --text:#F3F6FA;
+    --muted:#8FA0B8;
+    --muted-2:#5C6C84;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  section{position:relative;}
+
+  /* Background texture */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, #FF7A3222, transparent 60%),
+      radial-gradient(ellipse 800px 600px at 110% 20%, #00E0D61a, transparent 55%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:#080B12CC;
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;max-width:1160px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.25rem;letter-spacing:-0.02em;
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:9px;
+    background:linear-gradient(135deg,var(--orange),var(--cyan));
+    display:flex;align-items:center;justify-content:center;
+    font-size:.95rem;font-weight:700;color:#080B12;
+  }
+  .nav-links{display:flex;gap:34px;font-size:.92rem;font-weight:500;color:var(--muted);}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{
+    display:flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--orange),#ff9a5c);
+    color:#1a0d02;font-weight:700;font-size:.88rem;
+    padding:10px 18px;border-radius:100px;
+    box-shadow:0 4px 20px #FF7A3244;
+  }
+  .burger{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 80px;
+    position:relative;z-index:1;
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--cyan);
+    background:#00E0D614;border:1px solid #00E0D633;
+    padding:7px 14px;border-radius:100px;margin-bottom:24px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  .hero h1{
+    font-size:clamp(2.4rem,5vw,3.6rem);
+    font-weight:700;letter-spacing:-0.03em;line-height:1.05;
+    margin-bottom:20px;
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,var(--orange),var(--orange-soft) 60%,var(--cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{
+    font-size:1.08rem;color:var(--muted);max-width:480px;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--orange),#ff9a5c);
+    color:#1a0d02;font-weight:700;font-size:.95rem;
+    padding:15px 26px;border-radius:100px;
+    box-shadow:0 8px 30px #FF7A3244;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid var(--line-strong);color:var(--text);font-weight:600;font-size:.95rem;
+    padding:15px 26px;border-radius:100px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-ghost:hover{border-color:var(--cyan);background:#00E0D60c;}
+
+  .hero-stats{display:flex;gap:32px;margin-top:44px;}
+  .hero-stats div{border-left:2px solid var(--line-strong);padding-left:14px;}
+  .hero-stats strong{display:block;font-family:'Space Grotesk';font-size:1.5rem;font-weight:700;}
+  .hero-stats span{font-size:.8rem;color:var(--muted-2);}
+
+  /* Signature: speed panel */
+  .speed-panel{
+    background:linear-gradient(180deg,var(--surface),var(--bg-alt));
+    border:1px solid var(--line-strong);
+    border-radius:22px;padding:32px;
+    position:relative;overflow:hidden;
+  }
+  .speed-panel::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 70% 20%, #FF7A3222, transparent 55%);
+    pointer-events:none;
+  }
+  .speed-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;position:relative;z-index:1;}
+  .speed-top span{font-size:.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+  .live-badge{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--cyan);font-weight:700;}
+  .live-badge i{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);animation:pulse 1.8s infinite;}
+  .bars{display:flex;align-items:flex-end;gap:6px;height:130px;position:relative;z-index:1;margin-bottom:18px;}
+  .bars i{
+    flex:1;border-radius:6px 6px 0 0;
+    background:linear-gradient(180deg,var(--cyan),var(--orange));
+    animation:rise 2.2s ease-in-out infinite;
+    opacity:.9;
+  }
+  .bars i:nth-child(1){height:40%;animation-delay:.0s;}
+  .bars i:nth-child(2){height:65%;animation-delay:.15s;}
+  .bars i:nth-child(3){height:90%;animation-delay:.3s;}
+  .bars i:nth-child(4){height:55%;animation-delay:.45s;}
+  .bars i:nth-child(5){height:100%;animation-delay:.6s;}
+  .bars i:nth-child(6){height:70%;animation-delay:.75s;}
+  .bars i:nth-child(7){height:85%;animation-delay:.9s;}
+  .bars i:nth-child(8){height:50%;animation-delay:1.05s;}
+  .bars i:nth-child(9){height:95%;animation-delay:1.2s;}
+  .bars i:nth-child(10){height:60%;animation-delay:1.35s;}
+  @keyframes rise{0%,100%{transform:scaleY(.85);}50%{transform:scaleY(1);}}
+  .speed-readout{display:flex;align-items:baseline;gap:8px;position:relative;z-index:1;}
+  .speed-readout strong{font-family:'Space Grotesk';font-size:2.6rem;font-weight:700;}
+  .speed-readout span{color:var(--muted);font-size:.95rem;}
+  .speed-foot{margin-top:18px;font-size:.82rem;color:var(--muted-2);position:relative;z-index:1;}
+  @media (prefers-reduced-motion: reduce){
+    .bars i, .live-badge i, .eyebrow .dot{animation:none;}
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{max-width:560px;margin:0 auto 52px;text-align:center;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:12px;}
+  .section-head p{color:var(--muted);font-size:1.02rem;}
+
+  /* ---------- PLANOS ---------- */
+  .planos{padding:100px 0;position:relative;z-index:1;}
+  .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .plan-card{
+    background:var(--surface);border:1px solid var(--line-strong);
+    border-radius:var(--radius);padding:34px 28px;
+    display:flex;flex-direction:column;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .plan-card:hover{transform:translateY(-6px);border-color:var(--cyan);}
+  .plan-card.featured{
+    background:linear-gradient(180deg,#1a1408,var(--surface));
+    border-color:var(--orange);position:relative;
+  }
+  .plan-tag{
+    position:absolute;top:-13px;left:28px;
+    background:var(--orange);color:#1a0d02;font-size:.72rem;font-weight:700;
+    padding:5px 12px;border-radius:100px;letter-spacing:.02em;
+  }
+  .plan-name{font-size:.85rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+  .plan-speed{font-family:'Space Grotesk';font-size:2.4rem;font-weight:700;margin-bottom:2px;}
+  .plan-speed span{font-size:1rem;color:var(--muted);font-weight:500;}
+  .plan-price{color:var(--muted);font-size:.9rem;margin-bottom:24px;}
+  .plan-price b{color:var(--text);font-size:1.5rem;font-family:'Space Grotesk';}
+  .plan-features{flex:1;margin-bottom:26px;}
+  .plan-features li{
+    display:flex;align-items:center;gap:10px;
+    font-size:.9rem;color:var(--muted);padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .plan-features li:last-child{border-bottom:none;}
+  .plan-features li::before{content:"✓";color:var(--cyan);font-weight:700;}
+  .plan-card .btn-ghost, .plan-card .btn-primary{width:100%;justify-content:center;text-align:center;}
+
+  /* ---------- SOBRE ---------- */
+  .sobre{padding:100px 0;position:relative;z-index:1;background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sobre-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
+  .sobre h2{font-size:clamp(1.8rem,3.4vw,2.3rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:20px;}
+  .sobre p{color:var(--muted);margin-bottom:16px;font-size:1rem;}
+  .sobre-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+  .feat-item{
+    background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;
+    padding:20px;
+  }
+  .feat-item .ic{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,var(--orange),var(--cyan));
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:12px;
+  }
+  .feat-item h4{font-size:.95rem;font-weight:600;margin-bottom:4px;}
+  .feat-item p{font-size:.82rem;color:var(--muted-2);margin:0;}
+
+  /* ---------- COBERTURA ---------- */
+  .cobertura{padding:100px 0;position:relative;z-index:1;}
+  .cob-box{
+    background:linear-gradient(120deg,var(--surface),var(--surface-2));
+    border:1px solid var(--line-strong);border-radius:22px;
+    padding:56px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .cob-box::before{
+    content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+    border:1px solid #00E0D622;top:-100px;right:-100px;
+  }
+  .cob-box::after{
+    content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+    border:1px solid #FF7A3222;bottom:-80px;right:60px;
+  }
+  .cob-box h3{font-size:1.7rem;font-weight:700;margin-bottom:14px;position:relative;z-index:1;}
+  .cob-box p{color:var(--muted);margin-bottom:26px;position:relative;z-index:1;max-width:440px;}
+  .cob-form{display:flex;gap:10px;position:relative;z-index:1;}
+  .cob-form input{
+    flex:1;background:var(--bg);border:1px solid var(--line-strong);border-radius:100px;
+    padding:14px 20px;color:var(--text);font-size:.92rem;
+  }
+  .cob-form input:focus{outline:none;border-color:var(--cyan);}
+  .cob-info{position:relative;z-index:1;}
+  .cob-info .row{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:flex-start;}
+  .cob-info .row:last-child{border-bottom:none;}
+  .cob-info .row b{display:block;font-size:.9rem;margin-bottom:2px;}
+  .cob-info .row span{font-size:.85rem;color:var(--muted);}
+  .cob-info .ic2{font-size:1.2rem;}
+
+  /* ---------- DEPOIMENTOS ---------- */
+  .depo{padding:100px 0;position:relative;z-index:1;background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .depo-card{
+    background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);
+    padding:28px;
+  }
+  .depo-stars{color:var(--orange);font-size:.9rem;margin-bottom:14px;letter-spacing:2px;}
+  .depo-card p{color:var(--text);font-size:.95rem;margin-bottom:20px;line-height:1.6;}
+  .depo-user{display:flex;align-items:center;gap:12px;}
+  .depo-avatar{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg,var(--cyan),var(--orange));
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#080B12;
+  }
+  .depo-user b{display:block;font-size:.88rem;}
+  .depo-user span{font-size:.78rem;color:var(--muted-2);}
+
+  /* ---------- FAQ ---------- */
+  .faq{padding:100px 0;position:relative;z-index:1;}
+  .faq-list{max-width:760px;margin:0 auto;}
+  .faq-item{
+    border-bottom:1px solid var(--line-strong);
+  }
+  .faq-q{
+    width:100%;background:none;border:none;color:var(--text);text-align:left;
+    padding:22px 4px;font-size:1rem;font-weight:600;font-family:'Inter';cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;gap:20px;
+  }
+  .faq-q .plus{color:var(--cyan);font-size:1.3rem;font-weight:300;transition:transform .25s ease;flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a p{color:var(--muted);font-size:.92rem;padding:0 4px 22px;max-width:640px;}
+
+  /* ---------- CONTATO / CTA ---------- */
+  .contato{padding:100px 0 60px;position:relative;z-index:1;}
+  .cta-box{
+    background:linear-gradient(120deg,#1a1408,var(--surface) 60%);
+    border:1px solid var(--orange);border-radius:22px;
+    padding:60px;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-box::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 500px 260px at 50% 0%, #FF7A3233, transparent 70%);
+  }
+  .cta-box h2{font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:700;margin-bottom:14px;position:relative;z-index:1;}
+  .cta-box p{color:var(--muted);margin-bottom:30px;position:relative;z-index:1;}
+  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+  .contact-item{
+    background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;
+    padding:22px;text-align:left;
+  }
+  .contact-item .ic3{font-size:1.3rem;margin-bottom:10px;}
+  .contact-item b{display:block;font-size:.92rem;margin-bottom:2px;}
+  .contact-item span{font-size:.85rem;color:var(--muted);}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:40px 0;border-top:1px solid var(--line);position:relative;z-index:1;}
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .foot-grid p{color:var(--muted-2);font-size:.82rem;}
+  .foot-social{display:flex;gap:14px;}
+  .foot-social a{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--muted);
+    transition:border-color .2s, color .2s;
+  }
+  .foot-social a:hover{border-color:var(--cyan);color:var(--cyan);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-stats{flex-wrap:wrap;}
+    .plans-grid{grid-template-columns:1fr;}
+    .sobre-grid{grid-template-columns:1fr;}
+    .sobre-features{grid-template-columns:1fr 1fr;}
+    .cob-box{grid-template-columns:1fr;padding:32px;}
+    .depo-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .cta-box{padding:36px 24px;}
+    .cob-form{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><div class="logo-mark">H</div>Hubtel Telecom</div>
+    <ul class="nav-links">
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="nav-cta" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+    <button class="burger" aria-label="Abrir menu">☰</button>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Provedora autorizada Anatel · Planaltina-GO</div>
+        <h1>Internet de verdade,<br><span>sempre à frente.</span></h1>
+        <p>Fibra óptica de ponta a ponta para sua casa ou empresa. Estabilidade pra trabalhar, velocidade pra jogar e streaming sem travar — com atendimento humano de verdade.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#planos">Ver planos disponíveis →</a>
+          <a class="btn-ghost" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>450+</strong><span>avaliações 3.5★ no Google</span></div>
+          <div><strong>24h</strong><span>suporte via WhatsApp</span></div>
+          <div><strong>100%</strong><span>fibra óptica</span></div>
+        </div>
+      </div>
+      <div class="speed-panel">
+        <div class="speed-top">
+          <span>Monitor de rede</span>
+          <div class="live-badge"><i></i> ao vivo</div>
+        </div>
+        <div class="bars">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="speed-readout"><strong>Estável</strong><span>sinal ponta a ponta</span></div>
+        <div class="speed-foot">Rede monitorada continuamente para garantir estabilidade em Planaltina e região.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="planos" id="planos">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" style="display:inline-flex">Planos</div>
+        <h2>Escolha a velocidade que combina com você</h2>
+        <p>Planos residenciais em fibra óptica, sem franquia de dados e com instalação rápida.</p>
+      </div>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-name">Essencial</div>
+          <div class="plan-speed">300<span> Mega</span></div>
+          <div class="plan-price">a partir de <b>R$ 79,90</b>/mês</div>
+          <ul class="plan-features">
+            <li>Ideal para 2-3 dispositivos</li>
+            <li>Wi-Fi 5 incluso</li>
+            <li>Instalação em até 48h</li>
+            <li>Suporte via WhatsApp</li>
+          </ul>
+          <a class="btn-ghost" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Assinar agora</a>
+        </div>
+        <div class="plan-card featured">
+          <div class="plan-tag">Mais procurado</div>
+          <div class="plan-name">Turbo</div>
+          <div class="plan-speed">500<span> Mega</span></div>
+          <div class="plan-price">a partir de <b>R$ 99,90</b>/mês</div>
+          <ul class="plan-features">
+            <li>Ideal para família e home office</li>
+            <li>Wi-Fi 6 incluso</li>
+            <li>Instalação prioritária</li>
+            <li>Suporte 24h</li>
+          </ul>
+          <a class="btn-primary" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Assinar agora</a>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">Ultra</div>
+          <div class="plan-speed">700<span> Mega</span></div>
+          <div class="plan-price">a partir de <b>R$ 129,90</b>/mês</div>
+          <ul class="plan-features">
+            <li>Ideal para gamers e streamers</li>
+            <li>Wi-Fi 6 + roteador dedicado</li>
+            <li>IP dedicado sob consulta</li>
+            <li>Suporte 24h prioritário</li>
+          </ul>
+          <a class="btn-ghost" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Assinar agora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="wrap sobre-grid">
+      <div>
+        <h2>Quem está por trás da sua conexão</h2>
+        <p>A Hubtel Telecom é uma operadora de internet autorizada pela Anatel, atuando em Planaltina e região com fibra óptica de ponta a ponta.</p>
+        <p>Nosso compromisso é simples: entregar uma conexão estável, um atendimento próximo e uma equipe que resolve — sem enrolação, 24 horas por dia pelo WhatsApp.</p>
+        <a class="btn-primary" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Conhecer a Hubtel →</a>
+      </div>
+      <div class="sobre-features">
+        <div class="feat-item">
+          <div class="ic">⚡</div>
+          <h4>Ultravelocidade</h4>
+          <p>Fibra óptica de verdade, sem perda de sinal.</p>
+        </div>
+        <div class="feat-item">
+          <div class="ic">🎮</div>
+          <h4>Zero travamento</h4>
+          <p>Jogue e assista online sem interrupções.</p>
+        </div>
+        <div class="feat-item">
+          <div class="ic">🛰️</div>
+          <h4>Sinal estável</h4>
+          <p>Transmissão de dados de ponta a ponta.</p>
+        </div>
+        <div class="feat-item">
+          <div class="ic">💬</div>
+          <h4>Suporte 24h</h4>
+          <p>Atendimento todos os dias pelo WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COBERTURA -->
+  <section class="cobertura" id="cobertura">
+    <div class="wrap">
+      <div class="cob-box">
+        <div>
+          <h3>A Hubtel já chegou até você?</h3>
+          <p>Digite seu endereço ou bairro e a gente confirma se sua região já tem cobertura de fibra Hubtel Telecom.</p>
+          <form class="cob-form" onsubmit="event.preventDefault(); window.open('https://api.whatsapp.com/send?phone=556136391140&text=' + encodeURIComponent('Oi! Quero saber se tem cobertura Hubtel no endereço: ' + document.getElementById('endereco').value), '_blank');">
+            <input id="endereco" type="text" placeholder="Seu bairro ou endereço em Planaltina" required>
+            <button class="btn-primary" type="submit" style="white-space:nowrap;">Verificar</button>
+          </form>
+        </div>
+        <div class="cob-info">
+          <div class="row"><span class="ic2">📍</span><div><b>Endereço</b><span>Quadra 9 - Santa Rita, Planaltina - GO</span></div></div>
+          <div class="row"><span class="ic2">🕒</span><div><b>Horário de atendimento presencial</b><span>Seg. a sáb., 08h às 18h</span></div></div>
+          <div class="row"><span class="ic2">📞</span><div><b>Telefone / WhatsApp</b><span>(61) 3639-1140</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depo" id="depoimentos">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Quem já é Hubtel, recomenda</h2>
+        <p>Avaliação média de 3.5★ com mais de 450 avaliações no Google.</p>
+      </div>
+      <div class="depo-grid">
+        <div class="depo-card">
+          <div class="depo-stars">★★★★★</div>
+          <p>"Internet muito mais estável desde que troquei. O suporte responde rápido no WhatsApp, sem enrolação."</p>
+          <div class="depo-user">
+            <div class="depo-avatar">MC</div>
+            <div><b>Marcos C.</b><span>Cliente residencial</span></div>
+          </div>
+        </div>
+        <div class="depo-card">
+          <div class="depo-stars">★★★★★</div>
+          <p>"Instalação foi rápida e o técnico explicou tudo direitinho. Recomendo pra quem trabalha home office."</p>
+          <div class="depo-user">
+            <div class="depo-avatar">JR</div>
+            <div><b>Juliana R.</b><span>Cliente residencial</span></div>
+          </div>
+        </div>
+        <div class="depo-card">
+          <div class="depo-stars">★★★★☆</div>
+          <p>"Sinal bom até em horário de pico. Já indiquei pra vizinhança aqui em Planaltina."</p>
+          <div class="depo-user">
+            <div class="depo-avatar">PS</div>
+            <div><b>Pedro S.</b><span>Cliente residencial</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Perguntas frequentes</h2>
+        <p>Tudo o que você precisa saber antes de assinar.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Quanto tempo leva pra instalar?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Em áreas com cobertura, a instalação costuma acontecer em até 48h após a contratação, sujeito à disponibilidade de agenda técnica.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Tem fidelidade ou multa de cancelamento?<span class="plus">+</span></button>
+          <div class="faq-a"><p>As condições de fidelidade variam por plano e promoção vigente. Consulte um consultor pelo WhatsApp para confirmar as condições atuais.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">A internet tem franquia de dados?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Não. Todos os planos residenciais Hubtel Telecom são de internet ilimitada, sem franquia de dados ou redução de velocidade.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Como funciona o suporte técnico?<span class="plus">+</span></button>
+          <div class="faq-a"><p>O suporte está disponível 24 horas por dia pelo WhatsApp. Para atendimento presencial, a equipe funciona de segunda a sábado, das 08h às 18h.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Minha região tem cobertura?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Use o verificador de cobertura acima ou fale direto com a equipe pelo WhatsApp informando seu endereço em Planaltina e região.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato" id="contato">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>Pronto para navegar sempre à frente?</h2>
+        <p>Fale com a nossa equipe agora mesmo e confira o plano ideal para sua casa.</p>
+        <div class="cta-actions">
+          <a class="btn-primary" href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+          <a class="btn-ghost" href="tel:+556136391140">Ligar: (61) 3639-1140</a>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="ic3">📍</div>
+          <b>Endereço</b>
+          <span>Quadra 9 - Santa Rita, Planaltina - GO</span>
+        </div>
+        <div class="contact-item">
+          <div class="ic3">📞</div>
+          <b>Telefone</b>
+          <span>(61) 3639-1140</span>
+        </div>
+        <div class="contact-item">
+          <div class="ic3">🕒</div>
+          <b>Atendimento presencial</b>
+          <span>Seg. a sáb., 08h às 18h</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <p>© 2026 Hubtel Telecom · Autorizada pela Anatel · Planaltina - GO</p>
+    <div class="foot-social">
+      <a href="https://www.facebook.com/hubteltelecom" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+      <a href="https://www.instagram.com/hubteltelecom/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+      <a href="https://api.whatsapp.com/send?phone=556136391140" target="_blank" rel="noopener" aria-label="WhatsApp">wa</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
