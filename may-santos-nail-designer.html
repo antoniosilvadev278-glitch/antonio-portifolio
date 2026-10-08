@@ -373,14 +373,10 @@ p{margin:0;}
 </a>
 
 <script>
-/* ======================================================
-   CONFIGURAÇÃO — troque aqui quando tiver os dados reais
-   ====================================================== */
-const WHATSAPP_NUMBER = "+55 61 9400-4360"; // TODO: substituir pelo número real da May (formato 55DDNÚMERO)
-const INSTAGRAM_URL = "https://www.instagram.com/maysantos.beautystudio"; // TODO: confirmar o @ real
+const WHATSAPP_NUMBER = "+55 61 994004360 //
+const INSTAGRAM_URL = "https://www.instagram.com/mayara_santoslsl"; 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Preenche todos os botões de WhatsApp com o número + mensagem certa
   document.querySelectorAll('.btn-wa').forEach((el) => {
     const msg = el.getAttribute('data-wa-msg') || 'Olá! Vim pelo site e gostaria de agendar um horário.';
     el.setAttribute('href', `https://wa.me/${+55 61 9400-4360}?text=${encodeURIComponent(msg)}`);
@@ -403,11 +399,6 @@ document.addEventListener('DOMContentLoaded', () => {
       link.addEventListener('click', () => {
         nav.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-});
-
 </script>
 </body>
 </html>
